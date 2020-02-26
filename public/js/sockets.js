@@ -1,4 +1,4 @@
-const socket = io('http://localhost:8080')
+const socket = io('http://192.168.10.4:8080')
 
 function init() {
     socket.emit('init', {name: 'mike'});
@@ -7,9 +7,25 @@ function init() {
 
 socket.on('init', (data) => {
     orbs = data.orbs;
-    player.location.x = data.playerX;
-    player.location.y = data.playerY;
+    player.location = data.player_location;
     players = data.players;
-    console.log(player)
+    emit_tick();
     draw();
 })
+
+socket.on('tock', (data) => {
+    players = data.players;
+    player.location = data.player_location;
+});
+
+socket.on('newOrb', (data) => {
+    orbs.splice(data.index,1,data.orb);
+});
+
+function emit_tick() {
+    setInterval(() => {
+        socket.emit('tick', {
+            x: dirX, y: dirY
+        })
+    }, 33);
+}
