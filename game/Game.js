@@ -15,6 +15,10 @@ class Game {
         this.players.push(player);
         return player;
     }
+
+    destroyOrb(index) {
+        this.orbs.splice(index,1, new Orb(settings.defaultOrbRadius));
+    }
 }
 
 module.exports = new Game();

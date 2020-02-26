@@ -4,6 +4,9 @@ class Player extends GameObject {
         super(radius, color);
         this.name = name;
         this.id = _id;
+        this.score        = 0;
+        this.orbsAbsorbed = 0;
+        this.speed = 4;
     }
 
 }
