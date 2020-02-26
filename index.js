@@ -62,3 +62,11 @@ function orbCollision(player, orbs) {
         reject();
     });
 }
+
+function playerCollision(player,players) {
+    return new Promise((resolve,reject) => {
+        players.forEach((p,i) => {
+            
+        });
+    });
+}
